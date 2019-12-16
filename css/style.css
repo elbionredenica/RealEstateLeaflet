@@ -1,0 +1,691 @@
+*{
+  font-family: 'Questrial', sans-serif;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: none;
+}
+
+body {
+  overflow: hidden;
+}
+
+.tit {
+  justify-content: flex-start;
+  color: black;
+  margin: 10px;
+  cursor: context-menu;
+}
+
+.navbar {
+  width: 100%;
+  height: 70px;
+  background-color: white;
+  justify-content: space-between;
+  display: inline-flex;
+  position: fixed;
+  top: 0;
+  z-index: 99;
+  opacity: 0.9;
+  box-shadow: 10px 10px 10px 5px rgba(0,0,0,.2);
+  color: white;
+}
+
+.logo {
+  height: 35px;
+  width: 70px;
+  margin-right: 60%;
+  justify-content: flex-end;
+  cursor: pointer;
+}
+
+.navbar a {
+  text-align: center;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  color: #0099ff;
+  opacity: 1;
+}
+
+.navbar a.active{
+  text-decoration: underline;
+  text-decoration-color: #0099ff;
+  text-underline-position: under;
+  color: white;
+}
+
+
+
+ /* The sidebar menu */
+.sidebar {
+  display: flex;
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 4; /* Stay on top */
+  top: 70px;
+  left: 0;
+  background-color: #1c6e8c; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 0px; /* Place content 60px from the top */
+  transition: 0.75s; /* 0.5 second transition effect to slide in the sidebar */
+  padding-left: 0px;
+  padding: 0;
+  box-shadow: 10px 10px 10px 5px rgba(0,0,0,.2);
+}
+
+/* The sidebar links */
+.sidebar a {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 15px;
+  text-decoration: none;
+  font-size: 20px;
+  font-family: 'Questrial', sans-serif;
+  color: #818181;
+  transition: 0.3s;
+  text-align: center;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 15px;
+  font-size: 36px;
+  margin-left: 50px;
+  z-index: 1;
+}
+
+.closebtn {
+  margin-top: 10%;
+  margin-left: 425px;
+  z-index: 150;
+}
+
+/* The button used to open the sidebar */
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  position: fixed;
+  left: 0;
+  top: 50%;
+  z-index: 4;
+  opacity: 0.75;
+}
+
+.openbtn:hover {
+  background-color: #111;
+  opacity: 1;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+  transition: margin-left .5s; /* If you want a transition effect */
+  padding: 20px;
+  z-index: 2;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+
+#map {
+  position:absolute;
+  top:70px;
+  bottom:0;
+  width:100%;
+  z-index: -1;
+}
+
+#toggle-container {
+  background-color: white;
+  border: 0px dashed #999;
+  position: fixed;  
+  bottom: 0;
+  width: 100%;
+  z-index: 99;
+  opacity: 0.95;
+  box-shadow: 10px 10px 10px 10px rgba(0,0,0,.2);
+  text-align: center;
+}
+
+
+ #menu {
+  color: #222;
+  display: none;
+  line-height: 20px;
+  list-style: none;
+  margin: auto;
+  padding: 0;
+  text-align: center;
+  width: 100%;
+  height: 400px;
+ }
+
+ #toggle {
+  background-color: rgba(0, 0, 0, 0);
+  border: 0px solid rgba(0, 0, 0, 0);
+  cursor: pointer;
+  height: 12.5px;
+  margin: 7.5px 0px 20px 0px;
+  width: 45px;
+ }
+
+ #toggle div {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  background-color: #222;
+  height: 2px;
+  margin: 5px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  width: 100%;
+  box-shadow: 2px 2px 2px 2px rgba(0,0,0,.2);
+ }
+ #toggle.on .one {
+  opacity: 0;
+}
+
+#toggle.on .two {
+  -ms-transform: rotate(45deg);
+ -webkit-transform: rotate(45deg);
+ transform: rotate(45deg) translate(1px, 5px);
+}
+
+#toggle.on .three {
+ -ms-transform: rotate(30deg);
+ -webkit-transform: rotate(-30deg);
+ transform: rotate(-45deg) translate(-1px, -5px);
+}
+
+ .sidebarr {
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 4; /* Stay on top */
+  top: 70px;
+  right: 0;
+  background-color: #1c6e8c; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 10px; /* Place content 60px from the top */
+  transition: 0.75s; /* 0.5 second transition effect to slide in the sidebar */
+  display: block;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 10px 10px 10px 10px rgba(0,0,0,.2);
+  text-align: center;
+}
+
+/* The sidebar links */
+.sidebarr h4 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 1px;
+  text-decoration: none;
+  font-size: 20px;
+  font-family: 'Questrial', sans-serif;
+  color: #818181;
+  transition: 0.3s;
+  text-align: center;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidebarr h4:hover {
+  color: #f1f1f1;
+}
+
+.ropenbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  position: fixed;
+  right: 0;
+  top: 50%;
+  z-index: 4;
+  opacity: 0.75;
+}
+
+.ropenbtn:hover {
+  background-color: #111;
+  opacity: 1;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#rmain {
+  transition: margin-left .5s; /* If you want a transition effect */
+  padding: 20px;
+  z-index: 2;
+}
+
+.sidebarr .rclosebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+  z-index: 1;
+}
+
+.rclosebtn {
+  margin-right: 162.5px;
+  margin-top: 100%;
+}
+
+.rclosebtn:hover {
+    cursor: pointer;
+}
+
+#desc {
+   text-align: left;
+   max-width: 100%;
+   margin: 10px 5px 0px 10px;
+   color: white;
+   font-size: 12.5px;
+   font-family: 'Questrial', sans-serif;
+}
+
+#title {
+   text-align: center;
+   width: 100%;
+   margin-top: 10px;
+   margin-left: -67.5px;
+   font-size: 15px;
+   color: white;
+   font-family: 'Questrial', sans-serif;
+}
+
+#imagecontainer {
+  height: 100px;
+  width: 150px;
+  display: flex;
+  position: relative;
+  left: 7px;
+}
+
+.td {
+  display: block;
+  text-align: left;
+  align-items: center;
+}
+
+.info {
+  display: flex;
+  justify-content: space-around;
+}
+
+.container {
+  width: 100%;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 15px;
+  width: 15px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(16px);
+  -ms-transform: translateX(16px);
+  transform: translateX(16px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.titleside, .an {
+    font-size: 30px;
+    margin-top: 30px;
+    font-family: 'Questrial', sans-serif;
+}
+
+.an {
+    margin-top: 60%;
+}
+
+hr {
+  height: 25px;
+  width: 2px;
+}
+
+.obj {
+  height: 35px;
+  width: 35px;
+  margin-top: 20px;
+}
+
+.obj img {
+  object-fit: contain;
+}
+
+.minsaway {
+  height: 100px;
+  display: inline-flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+}
+
+.line {
+  height: 35px;
+  width: 1px;
+  background-color: #999;
+  margin: 0px 20px 0px 20px;
+}
+
+.hline1 {
+  height: 1px;
+  width: 100%;
+  background-color: #999;
+  margin: -10px 0px 20px 0px;
+}
+
+
+.hline {
+  height: 1px;
+  width: 100%;
+  background-color: #e8ad60;
+  margin: 20px 0px 20px 0px;
+}
+
+#type {
+  margin-bottom: 0;
+  font-size: 15px;
+  color: white;
+}
+
+#kaway, #saway, #haway, #ext {
+  font-size: 12.5px;
+  color: white;
+}
+
+#ext, #kaway, #saway, #haway {
+  display: inline-flex;
+}
+
+.space {
+  height: 250px;
+}
+
+.leg {
+  height: 75px;
+  width: 225px;
+  margin-left: 82.5%;
+  margin-top: 75px;
+  background-color: #333;
+  opacity: 0.8;
+  box-shadow: 0px 20px 20px 0px #111;
+  text-align: left;
+}
+
+.ba {
+  background-color: #0099ff;
+  width: 50px;
+  height: 20px;
+}
+
+.paba {
+  background-color: #fff;
+  width: 50px;
+  height: 20px;
+}
+
+.ba, .paba {
+  display: inline-flex;
+  margin-bottom: -5px;
+}
+
+.banuar, .pabanuar {
+  display: inline-block;
+  text-align: center;
+  margin-left: 10px;
+}
+
+.banuar {
+    margin-top: 10px;
+}
+
+.pabanuar {
+  margin-top: 0;
+}
+
+#ban {
+  display: inline-block;
+  font-size: 15px;
+  color: white;
+}
+
+#status {
+  border-radius: 100px;
+  height: 15px;
+  opacity: 0.85;
+  width: 15px;
+  text-align: center;
+  background-color: white;
+  margin-left: 5px;
+  display: inline-flex;
+  margin-top: 3px;
+  padding-left: 10px;
+}
+
+.st {
+  display: inline-flex;
+  position: fixed;
+  width: 375px;
+  justify-content: flex-start;
+  background-color: #111;
+  opacity: 0.85;
+  height: 50px;
+  margin-right: 20px;
+  padding-top: 15px;
+}
+
+.stp {
+  display: inline-flex;
+  font-size: 15px;
+  color: white;
+  padding-left: 10px;
+}
+
+.right {
+    height: auto;
+    width: 100%;
+    background: #1c6e8c;
+    transition: 0.75s;
+}
+
+.space1 {
+    bottom: 0;
+    height: 300px;
+    width: 100%;
+}
+
+.right:hover {
+    margin-top: -20px;
+    padding-top: 12.5px;
+    transition: 0.75s;
+    background: #274156;
+}
+
+
+.content {
+  display: inline-flex;
+  text-align: center;
+  justify-content: space-between;
+}
+
+.coords {
+  margin: 35px 200px 0px 0px;
+  font-size: 25px;
+  font-family: 'Questrial', sans-serif;
+}
+
+#coordsint {
+  margin-right: 195px;
+  font-size: 15px;
+}
+
+#buildingname {
+  margin-right: 195px;
+  font-size: 15px;
+}
+
+.infotjera {
+  display: inline-block;
+  text-align: center;
+}
+
+.carousel {
+  text-align: center;
+  display: grid;
+  grid-auto-flow: row;
+  overflow-x: unset;
+  width: 1200px;
+  grid-template-columns: repeat(5, 1fr);
+  margin-top: 100px;
+ justify-content: space-around;
+}
+
+.item {
+  height: 225px;
+  background: #f1c40f;
+  border: 0.5px solid #2c3e50;
+}
+
+.carousel,
+.item {
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+.item {
+  transform-origin: center left;
+}
+
+.carousel:hover {
+  -webkit-transform: translate3d(-100.5px, 0, 0);
+  transform: translate3d(-162.5px, 0, 0);
+}
+
+#cimage1:hover {
+  transform: translate3d(-90px, 50, 0);
+  transition: 1s;
+  margin-left: 100px;
+}
+
+#cimage1 {
+    transition: 1s;
+}
+
+#cimage:hover {
+  transform: translate3d(-90px, 50, 0);
+  transition: 0.75s;
+  margin-left: 800px;
+}
+
+#cimage {
+    margin-left: 0;
+    transition: 1s;
+}
+
+#cimage4 {
+    margin-right: 0;
+    transition: 1s;
+}
+
+#cimage4:hover {
+  transform: translate3d(90px, 50, 0);
+  transition: 0.75s;
+  margin-right: 500px;
+}
+
+
+.carousel:hover .item {
+  opacity: 0.3;
+}
+
+.carousel:hover .item:hover {
+  transform: scale(1.5);
+  opacity: 1;
+}
+
+.item:hover ~ .item {
+  transform: translate3d(90px, 0, 0);
+}
+
+.reinventlogo {
+  float: left;
+  height: 45px;
+  width: 75px;
+  cursor: pointer;
+}
